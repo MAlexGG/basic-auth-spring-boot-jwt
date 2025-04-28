@@ -1,4 +1,4 @@
-# :closed_lock_with_key: Scring Security + JWT
+# :closed_lock_with_key: Spring Security + JWT
 
 This is a basic Spring Boot API that uses Spring Security and Json Web Token for authorization and authentication. It's built with MVC three layered architecture and uses H2 for persistance.  
 
