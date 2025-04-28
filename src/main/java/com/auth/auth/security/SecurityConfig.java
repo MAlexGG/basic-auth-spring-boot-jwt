@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.auth.auth.security.filter.AuthenticationFilter;
+import com.auth.auth.security.filter.JWTAuthenticationFilter;
 import com.auth.auth.security.filter.JWTAuthorizationFilter;
 import com.auth.auth.security.manager.CustomAuthenticationManager;
 
@@ -25,7 +25,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
+        JWTAuthenticationFilter authenticationFilter = new JWTAuthenticationFilter(customAuthenticationManager);
         authenticationFilter.setFilterProcessesUrl("/login");
 
         http
@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .addFilter(authenticationFilter)
-            .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
+            .addFilterAfter(new JWTAuthorizationFilter(), JWTAuthenticationFilter.class)
             .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
     }

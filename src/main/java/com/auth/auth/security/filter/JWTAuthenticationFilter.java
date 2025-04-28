@@ -20,11 +20,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private CustomAuthenticationManager customAuthenticationManager;
 
-    public AuthenticationFilter(CustomAuthenticationManager customAuthenticationManager){
+    public JWTAuthenticationFilter(CustomAuthenticationManager customAuthenticationManager){
         this.customAuthenticationManager = customAuthenticationManager;
     }
 
